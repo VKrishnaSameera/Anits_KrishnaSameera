@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Learning Website</title>
+<title>Learning Resource Portal</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -14,161 +15,183 @@
 }
 
 body{
-    background: linear-gradient(135deg,#4facfe,#00f2fe);
     min-height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 
+/* Header */
 header{
+    background:linear-gradient(90deg,#004aad,#00b4d8);
+    color:white;
     text-align:center;
     padding:20px;
-    background:rgba(0,0,0,0.7);
-    color:white;
 }
 
 header h1{
-    font-size:2.5rem;
+    font-size:36px;
 }
+
+/* Main Container */
 
 .container{
-    display:flex;
-    height:80vh;
-}
-
-/* Left Partition */
-.section{
     flex:1;
-    padding:20px;
-    color:white;
-    overflow:auto;
+    display:flex;
 }
 
-.web{
+/* Web Technologies Section */
+
+.web-tech{
+    width:50%;
+    padding:30px;
     background:
-    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4');
+    linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
     background-size:cover;
-    background-position:center;
+    color:white;
 }
 
-.dl{
+/* Deep Learning Section */
+
+.deep-learning{
+    width:50%;
+    padding:30px;
     background:
-    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)),
     url('https://images.unsplash.com/photo-1677442136019-21780ecad995');
     background-size:cover;
-    background-position:center;
+    color:white;
 }
 
-.section h2{
+h2{
     text-align:center;
-    margin-bottom:20px;
-    font-size:2rem;
+    margin-bottom:25px;
 }
+
+/* Folder Design */
 
 .folder{
-    background:rgba(255,255,255,0.15);
+    background:white;
+    color:black;
+    margin-bottom:20px;
     padding:15px;
-    margin:15px 0;
     border-radius:10px;
-    backdrop-filter:blur(5px);
+    box-shadow:0 4px 8px rgba(0,0,0,0.3);
 }
 
 .folder h3{
+    color:#004aad;
     margin-bottom:10px;
-    color:#FFD700;
 }
 
 .subfolder{
-    margin:10px 0;
     padding:10px;
-    background:rgba(255,255,255,0.2);
-    border-radius:8px;
+    margin:10px 0;
+    background:#f0f8ff;
+    border-radius:6px;
 }
 
-input[type="file"]{
-    margin-top:8px;
+button{
+    padding:8px 15px;
+    border:none;
+    background:#004aad;
     color:white;
+    border-radius:5px;
+    cursor:pointer;
 }
+
+button:hover{
+    background:#0077ff;
+}
+
+/* Footer */
 
 footer{
-    text-align:center;
-    padding:15px;
     background:#111;
     color:white;
+    text-align:center;
+    padding:15px;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>🎓 Welcome to My Website!!</h1>
-    <p>Learning Resources Repository</p>
+<h1>Welcome to My Website!!</h1>
+<p>Learning Resources Portal</p>
 </header>
 
 <div class="container">
 
-    <!-- Web Technologies Section -->
-    <div class="section web">
-        <h2>📁 Web Technologies</h2>
+<!-- WEB TECHNOLOGIES -->
 
-        <div class="folder">
-            <h3>📂 PPT</h3>
-            <div class="subfolder">
-                Upload PPT:
-                <input type="file">
-            </div>
-        </div>
+<div class="web-tech">
 
-        <div class="folder">
-            <h3>📂 NOTES</h3>
-            <div class="subfolder">
-                Upload Notes:
-                <input type="file">
-            </div>
-        </div>
+<h2>🌐 Web Technologies</h2>
 
-        <div class="folder">
-            <h3>📂 PRACTICE PROGRAMS</h3>
-            <div class="subfolder">
-                Upload Programs:
-                <input type="file">
-            </div>
-        </div>
-    </div>
+<div class="folder">
 
-    <!-- Deep Learning Section -->
-    <div class="section dl">
-        <h2>📁 Deep Learning</h2>
+<h3>📁 PPT</h3>
 
-        <div class="folder">
-            <h3>📂 PPT</h3>
-            <div class="subfolder">
-                Upload PPT:
-                <input type="file">
-            </div>
-        </div>
+<div class="subfolder">
+<input type="file">
+</div>
 
-        <div class="folder">
-            <h3>📂 NOTES</h3>
-            <div class="subfolder">
-                Upload Notes:
-                <input type="file">
-            </div>
-        </div>
+<h3>📁 Notes</h3>
 
-        <div class="folder">
-            <h3>📂 PRACTICE PROGRAMS</h3>
-            <div class="subfolder">
-                Upload Programs:
-                <input type="file">
-            </div>
-        </div>
-    </div>
+<div class="subfolder">
+<input type="file">
+</div>
+
+<h3>📁 Practice Programs</h3>
+
+<div class="subfolder">
+<input type="file">
+</div>
+
+</div>
+
+</div>
+
+<!-- DEEP LEARNING -->
+
+<div class="deep-learning">
+
+<h2>🤖 Deep Learning</h2>
+
+<div class="folder">
+
+<h3>📁 PPT</h3>
+
+<div class="subfolder">
+<input type="file">
+</div>
+
+<h3>📁 Notes</h3>
+
+<div class="subfolder">
+<input type="file">
+</div>
+
+<h3>📁 Practice Programs</h3>
+
+<div class="subfolder">
+<input type="file">
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 <footer>
-    © 2026 My Learning Website. All Rights Reserved.
+© 2026 Your Name. All Rights Reserved.
 </footer>
 
 </body>
