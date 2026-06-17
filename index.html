@@ -1,197 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learning Resource Portal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Technologies Architecture</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #F0F4F8;
+      color: #1F2937;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, sans-serif;
-}
+    /* ── HEADER ─────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #1E3A5F 0%, #0C4A6E 100%);
+      color: #fff;
+      text-align: center;
+      padding: 56px 24px 48px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span { color: #22D3EE; }
+    .hero p {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      color: #BFDBFE;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .pill {
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
 
-body{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-}
+    /* ── MAIN LAYOUT ────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
 
-/* Header */
-header{
-    background:linear-gradient(90deg,#004aad,#00b4d8);
-    color:white;
-    text-align:center;
-    padding:20px;
-}
+    /* ── VIEWER SECTION ─────────────────────────────────────── */
+    .viewer-section {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.10);
+      padding: 32px;
+      margin-top: 40px;
+    }
+    .viewer-section h2 {
+      font-size: 1.3rem;
+      color: #1E3A5F;
+      margin-bottom: 6px;
+    }
+    .viewer-section .sub {
+      font-size: 0.9rem;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
 
-header h1{
-    font-size:36px;
-}
+    /* ── IFRAME EMBED ───────────────────────────────────────── */
+    .embed-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #0F172A;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .embed-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .embed-placeholder {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+      text-align: center;
+      padding: 24px;
+    }
+    .embed-placeholder .icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .embed-placeholder h3 { color: #E2E8F0; font-size: 1.2rem; margin-bottom: 8px; }
+    .embed-placeholder p { font-size: 0.9rem; line-height: 1.6; max-width: 420px; }
+    .embed-placeholder code {
+      display: inline-block;
+      background: #1E293B;
+      color: #7DD3FC;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+    }
 
-/* Main Container */
+    /* ── HOW TO EMBED ───────────────────────────────────────── */
+    .steps {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .step {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #1E3A5F;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+    }
+    .step h4 { font-size: 0.95rem; color: #1E3A5F; margin-bottom: 4px; }
+    .step p { font-size: 0.85rem; color: #475569; line-height: 1.5; }
 
-.container{
-    flex:1;
-    display:flex;
-}
+    /* ── DOWNLOAD BUTTON ────────────────────────────────────── */
+    .dl-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 10px;
+    }
+    .dl-bar p { flex: 1; font-size: 0.9rem; color: #1E3A5F; }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1E3A5F;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-download:hover { background: #0C4A6E; }
 
-/* Web Technologies Section */
+    /* ── CODE SNIPPET ───────────────────────────────────────── */
+    .code-block {
+      margin-top: 24px;
+    }
+    .code-block h3 { font-size: 1rem; color: #1E3A5F; margin-bottom: 10px; }
+    .code-block pre {
+      background: #0F172A;
+      color: #E2E8F0;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+    .code-block pre .tag { color: #F472B6; }
+    .code-block pre .attr { color: #7DD3FC; }
+    .code-block pre .val { color: #A3E635; }
+    .code-block pre .cmt { color: #4B5563; }
 
-.web-tech{
-    width:50%;
-    padding:30px;
-    background:
-    linear-gradient(rgba(0,0,0,0.5),
-    rgba(0,0,0,0.5)),
-    url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
-    background-size:cover;
-    color:white;
-}
+    /* ── TECH TOPICS GRID ───────────────────────────────────── */
+    .topics-section {
+      margin-top: 40px;
+    }
+    .topics-section h2 {
+      font-size: 1.4rem;
+      color: #1E3A5F;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .topic-card {
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .topic-card .t-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      opacity: .7;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .topic-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+    .topic-card p { font-size: 0.82rem; opacity: .85; }
 
-/* Deep Learning Section */
-
-.deep-learning{
-    width:50%;
-    padding:30px;
-    background:
-    linear-gradient(rgba(0,0,0,0.5),
-    rgba(0,0,0,0.5)),
-    url('https://images.unsplash.com/photo-1677442136019-21780ecad995');
-    background-size:cover;
-    color:white;
-}
-
-h2{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-/* Folder Design */
-
-.folder{
-    background:white;
-    color:black;
-    margin-bottom:20px;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 4px 8px rgba(0,0,0,0.3);
-}
-
-.folder h3{
-    color:#004aad;
-    margin-bottom:10px;
-}
-
-.subfolder{
-    padding:10px;
-    margin:10px 0;
-    background:#f0f8ff;
-    border-radius:6px;
-}
-
-button{
-    padding:8px 15px;
-    border:none;
-    background:#004aad;
-    color:white;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#0077ff;
-}
-
-/* Footer */
-
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:15px;
-}
-
-</style>
-
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 28px;
+      font-size: 0.82rem;
+      color: #94A3B8;
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<h1>Welcome to My Website!!</h1>
-<p>Learning Resources Portal</p>
-</header>
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<div class="hero">
+  <h1>Web Technologies <span>Architecture</span></h1>
+  <p>A beginner's guide to the complete MERN stack — HTML, CSS, Bootstrap, React JS, Node.js &amp; MongoDB</p>
+  <div class="pill-row">
+    <span class="pill" style="background:#E8511A">HTML</span>
+    <span class="pill" style="background:#264DE4">CSS</span>
+    <span class="pill" style="background:#7952B3">Bootstrap</span>
+    <span class="pill" style="background:#0EA5E9">React JS</span>
+    <span class="pill" style="background:#3C873A">Node.js</span>
+    <span class="pill" style="background:#4DB33D">MongoDB</span>
+  </div>
+</div>
 
 <div class="container">
 
-<!-- WEB TECHNOLOGIES -->
+  <!-- ── PRESENTATION VIEWER ───────────────────────────────── -->
+  <div class="viewer-section">
+    <h2>📊 Presentation Viewer</h2>
+    <p class="sub">29 slides covering web technologies from basics to full-stack architecture</p>
 
-<div class="web-tech">
+    <!-- Embed iframe — replace YOUR_FILE_URL with your hosted PPTX URL -->
+    <div class="embed-wrapper">
+      <div class="embed-placeholder" id="placeholder">
+        <div class="icon">📑</div>
+        <h3>Embed Your Presentation Here</h3>
+        <p>
+          Upload <code>https://docs.google.com/presentation/d/1TVo3I4d3QgP8AUdcsVsk29ipaidFrfC5/edit?usp=drive_link&ouid=113935732047557341877&rtpof=true&sd=true</code> to OneDrive or Google Drive,
+          then paste the embed URL below to display it inline on this page.
+        </p>
+        <p style="margin-top:12px;font-size:.82rem;">
+          See the <strong>How to Embed</strong> steps below.
+        </p>
+      </div>
+      <!--
+        OPTION A – Microsoft Office Online (OneDrive):
+        <iframe src="https://onedrive.live.com/embed?resid=YOUR_RESID&amp;authkey=YOUR_KEY&amp;em=2"
+                allowfullscreen></iframe>
 
-<h2>🌐 Web Technologies</h2>
+        OPTION B – Google Slides (after converting and uploading):
+        <iframe src="https://docs.google.com/presentation/d/YOUR_ID/embed?start=false&loop=false&delayms=3000"
+                allowfullscreen></iframe>
+      -->
+    </div>
 
-<div class="folder">
+    <!-- Steps -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Download the PPTX</h4>
+        <p>Click the download button below to save <em>Web_Technologies_Architecture.pptx</em> to your computer.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Upload to Cloud</h4>
+        <p>Upload to <strong>OneDrive</strong> (free) or convert and upload to <strong>Google Drive</strong> as Google Slides.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Get Embed Link</h4>
+        <p>In OneDrive: Share → Embed → Copy code. In Google Slides: File → Share → Publish to web → Embed.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Paste into This Page</h4>
+        <p>Replace the <code>&lt;!-- OPTION A --&gt;</code> comment in the HTML source with your embed <code>&lt;iframe&gt;</code>.</p>
+      </div>
+    </div>
 
-<h3>📁 PPT</h3>
+    <!-- Download bar -->
+    <div class="dl-bar">
+      <p>&#11015;&#65039; Download the presentation file and open it directly in PowerPoint or LibreOffice Impress.</p>
+      <a href="Web_Technologies_Architecture.pptx" download class="btn-download">
+        &#128229; Download PPTX
+      </a>
+    </div>
+  </div>
 
-<div class="subfolder">
-<input type="file">
-</div>
+  <!-- ── EMBED CODE SNIPPET ─────────────────────────────────── -->
+  <div class="viewer-section">
+    <h2>🔧 Embed Code (copy into your webpage)</h2>
+    <p class="sub">Paste this snippet where you want the presentation to appear in your HTML file.</p>
+    <div class="code-block">
+      <pre><span class="cmt">&lt;!-- Step 1: Add this CSS to your &lt;style&gt; or stylesheet --&gt;</span>
+<span class="tag">.pptx-wrapper</span> {
+  <span class="attr">position</span>: <span class="val">relative</span>;
+  <span class="attr">width</span>: <span class="val">100%</span>;
+  <span class="attr">padding-top</span>: <span class="val">56.25%</span>; <span class="cmt">/* 16:9 ratio */</span>
+}
+<span class="tag">.pptx-wrapper iframe</span> {
+  <span class="attr">position</span>: <span class="val">absolute</span>;
+  <span class="attr">top</span>: <span class="val">0</span>; <span class="attr">left</span>: <span class="val">0</span>;
+  <span class="attr">width</span>: <span class="val">100%</span>; <span class="attr">height</span>: <span class="val">100%</span>;
+  <span class="attr">border</span>: <span class="val">none</span>;
+}
 
-<h3>📁 Notes</h3>
+<span class="cmt">&lt;!-- Step 2: Add this HTML where you want the slideshow --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"pptx-wrapper"</span><span class="tag">&gt;</span>
 
-<div class="subfolder">
-<input type="file">
-</div>
+  <span class="cmt">&lt;!-- OneDrive embed (replace YOUR_EMBED_URL) --&gt;</span>
+  <span class="tag">&lt;iframe</span>
+    <span class="attr">src</span>=<span class="val">"https://onedrive.live.com/embed?resid=YOUR_RESID&amp;authkey=YOUR_KEY&amp;em=2"</span>
+    <span class="attr">allowfullscreen</span>
+  <span class="tag">&gt;&lt;/iframe&gt;</span>
 
-<h3>📁 Practice Programs</h3>
+  <span class="cmt">&lt;!-- OR: Google Slides embed (replace YOUR_PRESENTATION_ID) --&gt;</span>
+  <span class="tag">&lt;iframe</span>
+    <span class="attr">src</span>=<span class="val">"https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID/embed?start=false&amp;loop=false&amp;delayms=3000"</span>
+    <span class="attr">allowfullscreen</span>
+  <span class="tag">&gt;&lt;/iframe&gt;</span>
 
-<div class="subfolder">
-<input type="file">
-</div>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
 
-</div>
-
-</div>
-
-<!-- DEEP LEARNING -->
-
-<div class="deep-learning">
-
-<h2>🤖 Deep Learning</h2>
-
-<div class="folder">
-
-<h3>📁 PPT</h3>
-
-<div class="subfolder">
-<input type="file">
-</div>
-
-<h3>📁 Notes</h3>
-
-<div class="subfolder">
-<input type="file">
-</div>
-
-<h3>📁 Practice Programs</h3>
-
-<div class="subfolder">
-<input type="file">
-</div>
-
-</div>
-
-</div>
+  <!-- ── TOPIC CARDS ────────────────────────────────────────── -->
+  <div class="topics-section">
+    <h2>What's Inside the Presentation?</h2>
+    <div class="topics-grid">
+      <div class="topic-card" style="background:#E8511A">
+        <div class="t-num">SLIDES 4 – 8</div>
+        <h3>HTML</h3>
+        <p>Structure, tags, document tree, HTML5 features</p>
+      </div>
+      <div class="topic-card" style="background:#264DE4">
+        <div class="t-num">SLIDES 9 – 13</div>
+        <h3>CSS</h3>
+        <p>Selectors, box model, Flexbox &amp; Grid</p>
+      </div>
+      <div class="topic-card" style="background:#7952B3">
+        <div class="t-num">SLIDES 14 – 17</div>
+        <h3>Bootstrap</h3>
+        <p>Grid system, components, responsive design</p>
+      </div>
+      <div class="topic-card" style="background:#0EA5E9">
+        <div class="t-num">SLIDES 18 – 21</div>
+        <h3>React JS</h3>
+        <p>Components, JSX, State, Props &amp; Hooks</p>
+      </div>
+      <div class="topic-card" style="background:#3C873A">
+        <div class="t-num">SLIDES 22 – 24</div>
+        <h3>Node.js</h3>
+        <p>Event loop, Express.js, REST APIs</p>
+      </div>
+      <div class="topic-card" style="background:#13AA52">
+        <div class="t-num">SLIDES 25 – 27</div>
+        <h3>MongoDB</h3>
+        <p>Documents, collections, NoSQL vs SQL</p>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <footer>
-© 2026 Your Name. All Rights Reserved.
+  Web Technologies Architecture &mdash; 29 Slides &mdash; Beginner Friendly
 </footer>
 
 </body>
