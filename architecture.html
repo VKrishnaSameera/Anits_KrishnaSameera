@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Architecture | ANITS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #030712; color: #f3f4f6; line-height: 1.7; padding: 2rem; }
+        .back-btn { display: inline-block; color: #38bdf8; text-decoration: none; margin-bottom: 2rem; font-weight: 600; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(17, 24, 39, 0.5); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); }
+        h1 { font-size: 2.5rem; margin-bottom: 1.5rem; background: linear-gradient(to right, #ffffff, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { color: #38bdf8; margin: 2rem 0 1rem 0; font-size: 1.5rem; }
+        p { color: #9ca3af; margin-bottom: 1.2rem; }
+        .alert-box { background: rgba(56, 189, 248, 0.05); border-left: 4px solid #38bdf8; padding: 1.2rem; border-radius: 8px; margin: 1.5rem 0; color: #e5e7eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+        <h1>Web Architecture Concepts</h1>
+        <p>Web architecture describes the structural interactions layout between application services, backend databases, client browsers, and middleware layers working synchronously over high-speed networks.</p>
+        
+        <h2>The Client-Server Cycle</h2>
+        <p>The foundational framework governing web interactions is the Request-Response Model. The client web browser initiates contact via structured HTTP/HTTPS packages. The target network server analyzes the payload request, queries associated internal application processes, and responds with appropriate data structures.</p>
+        
+        <div class="alert-box">
+            <strong>Key Architecture Rule:</strong> Clients should never communicate directly with structural storage databases. All queries must flow safely through secure backend application logic interfaces (APIs) to enforce security validations.
+        </div>
+
+        <h2>Multi-Tier Implementations</h2>
+        <p>Modern scalable ecosystems rely on a 3-tier approach: Presentation Tier (Frontend UI frameworks), Application Tier (Backend server runtime APIs), and Data Tier (Persistent file structures and database clouds).</p>
+    </div>
+</body>
+</html>

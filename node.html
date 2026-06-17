@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Runtime | ANITS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #030712; color: #f3f4f6; line-height: 1.7; padding: 2rem; }
+        .back-btn { display: inline-block; color: #3c873a; text-decoration: none; margin-bottom: 2rem; font-weight: 600; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(17, 24, 39, 0.5); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); }
+        h1 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #ffffff; }
+        h2 { color: #3c873a; margin: 2rem 0 1rem 0; font-size: 1.5rem; }
+        p { color: #9ca3af; margin-bottom: 1.2rem; }
+        pre { background: #0b0f19; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); overflow-x: auto; color: #f3f4f6; font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Hub</a>
+        <h1>Node.js Server Runtime Environment</h1>
+        <p>Node.js executes high-frequency asynchronous computing processes directly on local operational system machines instead of loading code instances strictly inside client applications.</p>
+        
+        <h2>The Event-Driven Non-Blocking Engine</h2>
+        <p>Node works via a single thread running a continuous loop that hands computational file input-output tasks off directly to hidden system operating threads, handling thousands of API requests concurrently with minimal overhead.</p>
+
+        <h2>Basic Native Server Instance Example</h2>
+        <pre>const http = require('http');
+
+const runtimeServer = http.createServer((request, response) => {
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.end('API Request Processed Successfully.\n');
+});
+
+runtimeServer.listen(3000, () => console.log('Server online.'));</pre>
+    </div>
+</body>
+</html>
